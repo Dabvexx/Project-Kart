@@ -19,7 +19,6 @@ public class NetworkManagerUI : MonoBehaviour
 
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private GameObject readyUpPanel;
-    [SerializeField] private GameObject trollPanel;
 
     #endregion Variables
 
@@ -27,7 +26,7 @@ public class NetworkManagerUI : MonoBehaviour
 
     private void Start()
     {
-        trollPanel.SetActive(false);
+        readyUpPanel.SetActive(false);
     }
 
     private void Awake()
@@ -60,23 +59,8 @@ public class NetworkManagerUI : MonoBehaviour
     private void ShowReadyScreen()
     {
         mainMenuPanel.SetActive(false);
-        trollPanel.SetActive(true);
-        //SpawnPanelServerRpc();
+        readyUpPanel.SetActive(true);
     }
 
-    /*[ServerRpc(RequireOwnership = false)]
-    private void SpawnPanelServerRpc()
-    {
-        GameObject go = Instantiate(readyUpPanel, new Vector3(Screen.width * .5f, Screen.height * .5f, 0), Quaternion.identity, transform);
-        go.GetComponent<NetworkObject>().Spawn();
-        Debug.Log("Test server Rpc");
-    }*/
-
     #endregion Private Methods
-
-    #region Public Methods
-
-    // Public Methods.
-
-    #endregion Public Methods
 }

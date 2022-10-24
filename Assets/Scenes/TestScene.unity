@@ -1051,7 +1051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1062686533
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1091,6 +1091,8 @@ MonoBehaviour:
   HostBtn: {fileID: 317449901}
   serverBtn: {fileID: 186611938}
   clientBtn: {fileID: 354477398}
+  mainMenuPanel: {fileID: 0}
+  readyUpPanel: {fileID: 0}
 --- !u!1 &1111320913
 GameObject:
   m_ObjectHideFlags: 0

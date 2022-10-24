@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class MenuMiddleMan : NetworkBehaviour
+public class NetworkLobbyManager : NetworkBehaviour
 {
     #region Variables
     // Variables.
