@@ -77,6 +77,12 @@ public class NetworkReadyTracker : NetworkBehaviour
     {
         Debug.Log(OwnerClientId + "; Ready Up Request Sent");
         numReady.Value--;
+        //NetworkManager.OnClientConnectedCallback += SpawnPlayer();
+    }
+
+    private void SpawnPlayer()
+    {
+        // spawn a player
     }
 
     public void ValidateReady()
