@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1103506788928240951}
   - component: {fileID: 2103646785916127885}
   - component: {fileID: 4019146192718695191}
+  - component: {fileID: 4359376251017483140}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6863593356680991420}
+  - {fileID: 3293620187081342074}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -94,7 +95,19 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
---- !u!1001 &1650015135895009499
+--- !u!114 &4359376251017483140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469000196368262612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a917d3e457bfc640a526c5781a8aa63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &7211146809957176861
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -147,12 +160,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7020509282303057091, guid: 790c4d6830e10034bad182b15854b9c1, type: 3}
       propertyPath: m_Name
-      value: Capsule
+      value: Player Model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 790c4d6830e10034bad182b15854b9c1, type: 3}
---- !u!4 &6863593356680991420 stripped
+--- !u!4 &3293620187081342074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5307045540674513511, guid: 790c4d6830e10034bad182b15854b9c1, type: 3}
-  m_PrefabInstance: {fileID: 1650015135895009499}
+  m_PrefabInstance: {fileID: 7211146809957176861}
   m_PrefabAsset: {fileID: 0}

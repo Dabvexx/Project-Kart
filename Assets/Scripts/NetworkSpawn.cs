@@ -6,25 +6,29 @@ using Unity.Netcode;
 public class NetworkSpawn : NetworkBehaviour
 {
     #region Variables
+
     // Variables.
-    [SerializeField] GameObject spawnObj;
-    #endregion
+    [SerializeField] private GameObject spawnObj;
+
+    public Transform spawnPoint;
+
+    #endregion Variables
 
     #region Unity Methods
 
-    void Start()
+    private void Start()
     {
         SpawnObjectServerRpc();
     }
 
-    void Update()
+    private void Update()
     {
-        
     }
 
-    #endregion
+    #endregion Unity Methods
 
     #region Private Methods
+
     // Private Methods.
 
     [ServerRpc(RequireOwnership = false)]
@@ -38,15 +42,17 @@ public class NetworkSpawn : NetworkBehaviour
 
         var clientId = serverRpcParams.Receive.SenderClientId;
 
-        GameObject go = Instantiate(spawnObj, Vector3.zero, Quaternion.identity);
+        GameObject go = Instantiate(spawnObj, spawnPoint.position, spawnPoint.rotation);
         var netObj = go.GetComponent<NetworkObject>();
         netObj.Spawn();
         netObj.ChangeOwnership(clientId);
     }
-    #endregion
+
+    #endregion Private Methods
 
     #region Public Methods
+
     // Public Methods.
-    
-    #endregion
+
+    #endregion Public Methods
 }
