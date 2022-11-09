@@ -12,6 +12,10 @@ public class NetworkSpawn : NetworkBehaviour
 
     public Transform spawnPoint;
 
+    // List of spawn points to start
+    // after each spawn remove from list and decrement amount of useable spawners
+    // or spawn at spawner matching client ID
+
     #endregion Variables
 
     #region Unity Methods

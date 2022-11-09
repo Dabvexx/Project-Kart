@@ -7,6 +7,7 @@ public class SetFollowCamera : MonoBehaviour
 {
     #region Variables
 
+    [SerializeField] private CinemachineFreeLook vcam;
     // Variables.
 
     #endregion Variables
@@ -16,7 +17,6 @@ public class SetFollowCamera : MonoBehaviour
     private void Start()
     {
         //var vcam = FindObjectOfType<CinemachineVirtualCamera>().GetComponent<CinemachineVirtualCamera>();
-        var vcam = FindObjectOfType<CinemachineFreeLook>().GetComponent<CinemachineFreeLook>();
         vcam.Follow = transform;
         vcam.LookAt = transform;
         //vcam.m_YAxis.Value = 4f;

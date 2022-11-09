@@ -4,17 +4,19 @@ using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerNetowrk : NetworkBehaviour
+public class PlayerNetwork : NetworkBehaviour
 {
     #region Variables
 
     // Variables.
-    [SerializeField] private float moveSpeed = 3f;
+    //[SerializeField] private float moveSpeed = 3f;
 
-    [SerializeField] private WheelCollider frontLeftWheel;
-    [SerializeField] private WheelCollider frontRightWheel;
-    [SerializeField] private WheelCollider backLeftWheel;
-    [SerializeField] private WheelCollider backRightWheel;
+    //[SerializeField] private WheelCollider frontLeftWheel;
+    //[SerializeField] private WheelCollider frontRightWheel;
+    //[SerializeField] private WheelCollider backLeftWheel;
+    //[SerializeField] private WheelCollider backRightWheel;
+
+    private CarController cc;
 
     private NetworkVariable<MyCustomData> randomNum = new NetworkVariable<MyCustomData>(
         new MyCustomData
@@ -28,13 +30,16 @@ public class PlayerNetowrk : NetworkBehaviour
 
     #region Unity Methods
 
-    private void Start()
+    private void Awake()
     {
+        cc = GetComponent<CarController>();
     }
 
     private void Update()
     {
-        Move();
+        if (!IsOwner) return;
+
+        cc.Drive();
     }
 
     #endregion Unity Methods
@@ -54,7 +59,7 @@ public class PlayerNetowrk : NetworkBehaviour
 
         var input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        transform.Translate(moveSpeed * input * Time.deltaTime);
+        //transform.Translate(moveSpeed * input * Time.deltaTime);
     }
 
     [ServerRpc]
