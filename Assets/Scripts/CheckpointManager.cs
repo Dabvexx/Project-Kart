@@ -1,17 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
 
-/// <summary>
-/// Simply sets the VCAM to follow your car
-/// </summary>
-public class SetFollowCamera : MonoBehaviour
+public class CheckpointManager : MonoBehaviour
 {
     #region Variables
 
-    [SerializeField] private CinemachineFreeLook vcam;
     // Variables.
+    public List<GameObject> essentialCheckpoints;
+
+    public List<GameObject> respawnCheckpoints;
 
     #endregion Variables
 
@@ -19,11 +17,6 @@ public class SetFollowCamera : MonoBehaviour
 
     private void Start()
     {
-        //var vcam = FindObjectOfType<CinemachineVirtualCamera>().GetComponent<CinemachineVirtualCamera>();
-        vcam.Follow = transform;
-        vcam.LookAt = transform;
-        //vcam.m_YAxis.Value = 4f;
-        //vcam.m_XAxis.Value = 6f;
     }
 
     private void Update()
