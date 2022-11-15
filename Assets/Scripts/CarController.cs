@@ -58,9 +58,11 @@ public class CarController : MonoBehaviour
         Vector3 position;
         Quaternion rotation;
         collider.GetWorldPose(out position, out rotation);
+        //rotation *= Mathf.Sign(rotation);
 
         visualWheel.transform.position = position;
         visualWheel.transform.rotation = rotation;
+        //Debug.Log(collider + " " + rotation);
     }
 
     #endregion Public Methods
