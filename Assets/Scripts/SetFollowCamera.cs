@@ -10,9 +10,8 @@ using Cinemachine;
 public class SetFollowCamera : NetworkBehaviour
 {
     #region Variables
-
-    [SerializeField] private CinemachineFreeLook vcam;
     // Variables.
+
 
     #endregion Variables
 
@@ -21,9 +20,9 @@ public class SetFollowCamera : NetworkBehaviour
     private void Start()
     {
         //var vcam = FindObjectOfType<CinemachineVirtualCamera>().GetComponent<CinemachineVirtualCamera>();
-        if (IsLocalPlayer)
+        if (IsOwner)
         {
-            vcam = FindObjectOfType<CinemachineFreeLook>().GetComponent<CinemachineFreeLook>();
+            var vcam = FindObjectOfType<CinemachineFreeLook>().GetComponent<CinemachineFreeLook>();
             vcam.Follow = transform;
             vcam.LookAt = transform;
         }
@@ -31,21 +30,5 @@ public class SetFollowCamera : NetworkBehaviour
         //vcam.m_XAxis.Value = 6f;
     }
 
-    private void Update()
-    {
-    }
-
-    #endregion Unity Methods
-
-    #region Private Methods
-
-    // Private Methods.
-
-    #endregion Private Methods
-
-    #region Public Methods
-
-    // Public Methods.
-
-    #endregion Public Methods
+    #endregion
 }
