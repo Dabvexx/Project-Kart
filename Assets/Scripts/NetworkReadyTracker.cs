@@ -14,6 +14,8 @@ public class NetworkReadyTracker : NetworkBehaviour
 
     [SerializeField] private int numTracks = 1;
     private NetworkManager nm;
+
+    // This variable keeps track of how many players are ready to then start the game.
     [SerializeField] private NetworkVariable<int> numReady = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     #endregion Variables
@@ -64,6 +66,8 @@ public class NetworkReadyTracker : NetworkBehaviour
     #region Public Methods
 
     // Public Methods.
+
+    // Tell server to ready player
     [ServerRpc(RequireOwnership = false)]
     public void ReadyUpServerRpc()
     {
@@ -72,17 +76,13 @@ public class NetworkReadyTracker : NetworkBehaviour
         ValidateReady();
     }
 
+    // Tell server to unready player
     [ServerRpc(RequireOwnership = false)]
     public void UnreadyUpServerRpc()
     {
-        Debug.Log(OwnerClientId + "; Ready Up Request Sent");
+        Debug.Log(OwnerClientId + "; Unready Up Request Sent");
         numReady.Value--;
         //NetworkManager.OnClientConnectedCallback += SpawnPlayer();
-    }
-
-    private void SpawnPlayer()
-    {
-        // spawn a player
     }
 
     public void ValidateReady()

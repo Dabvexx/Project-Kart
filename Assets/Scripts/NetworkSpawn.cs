@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
+/// <summary>
+/// Spawn an object on the server with ownership to the client who requested the spawn
+/// the server is not authoritative because that would be really annoying to make the server keep track of where everyone is
+/// </summary>
 public class NetworkSpawn : NetworkBehaviour
 {
     #region Variables
@@ -25,10 +29,6 @@ public class NetworkSpawn : NetworkBehaviour
         SpawnObjectServerRpc();
     }
 
-    private void Update()
-    {
-    }
-
     #endregion Unity Methods
 
     #region Private Methods
@@ -38,14 +38,17 @@ public class NetworkSpawn : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void SpawnObjectServerRpc(ServerRpcParams serverRpcParams = default)
     {
+        // Only run this if you are the server and enabled.
         enabled = IsServer;
         if (!enabled || spawnObj == null)
         {
             return;
         }
 
+        // Get the client ID
         var clientId = serverRpcParams.Receive.SenderClientId;
 
+        // Instantiate object over the server and give ownership to the client
         GameObject go = Instantiate(spawnObj, spawnPoint.position, spawnPoint.rotation);
         var netObj = go.GetComponent<NetworkObject>();
         netObj.Spawn();
@@ -53,10 +56,4 @@ public class NetworkSpawn : NetworkBehaviour
     }
 
     #endregion Private Methods
-
-    #region Public Methods
-
-    // Public Methods.
-
-    #endregion Public Methods
 }

@@ -1,24 +1,38 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.Netcode.Transports.UTP;
+using TMPro;
 
 public class NetworkManagerUI : MonoBehaviour
 {
     #region Variables
 
     // Variables.
-
+    [SerializeField] private TMP_InputField ipAddressInputField;
+    
+    // The buttons to start the server
+    // The server button is unused.
     [SerializeField] private Button HostBtn;
 
     [SerializeField] private Button serverBtn;
 
     [SerializeField] private Button clientBtn;
 
+
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private GameObject readyUpPanel;
+
+    // Credit to Spessman for the setting IP code
+    // https://www.youtube.com/watch?v=n2HFUmhSmq4&ab_channel=Spessman
+    // (there is no github link so the video will do)
+    // Also this didnt work but i left it just in case
+    //public UnityTransport transport => (UnityTransport)NetworkManager.Singleton.NetworkConfig.NetworkTransport;
+    //public void SetIP(string ip) => transport.ConnectionData.Address = ip;
 
     #endregion Variables
 
@@ -32,23 +46,24 @@ public class NetworkManagerUI : MonoBehaviour
 
     private void Awake()
     {
+        // Whenever any button is pressed, set IP to input field.
         serverBtn.onClick.AddListener(() =>
         {
-            NetworkManager.Singleton.StartServer();
             ShowReadyScreen();
+            NetworkManager.Singleton.StartServer();
         });
 
         HostBtn.onClick.AddListener(() =>
         {
             //NetworkManager.Singleton.ConnectionApprovalCallback = ApprovalCheck;
-            NetworkManager.Singleton.StartHost();
             ShowReadyScreen();
+            NetworkManager.Singleton.StartHost();
         });
 
         clientBtn.onClick.AddListener(() =>
         {
-            NetworkManager.Singleton.StartClient();
             ShowReadyScreen();
+            NetworkManager.Singleton.StartClient();
         });
     }
 
@@ -58,37 +73,32 @@ public class NetworkManagerUI : MonoBehaviour
 
     // Private Methods.
 
+    // bring up the ready panel UI
     private void ShowReadyScreen()
     {
+        // Set the port to 6742 because that port is unused
+        // NOTE TO SELF: open port 6742 on the firewall for presentation.
+        //SetIP(TryParseIpAddressFromInputField().Host);
         mainMenuPanel.SetActive(false);
         readyUpPanel.SetActive(true);
     }
 
-    private void ApprovalCheck(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)
+    /*private Uri TryParseIpAddressFromInputField()
     {
-        // The client identifier to be authenticated
-        var clientId = request.ClientNetworkId;
+        UriBuilder uriBuilder = new UriBuilder();
+        uriBuilder.Scheme = "kcp";
+        if (ipAddressInputField)
+        {
+            uriBuilder.Host = ipAddressInputField.textComponent.text;
+        }
+        else
+        {
+            //uriBuilder.Host = "localhost";
+        }
 
-        // Additional connection data defined by user code
-        var connectionData = request.Payload;
-
-        // Your approval logic determines the following values
-        response.Approved = true;
-        response.CreatePlayerObject = true;
-
-        // The prefab hash value of the NetworkPrefab, if null the default NetworkManager player prefab is used
-        response.PlayerPrefabHash = null;
-
-        // Position to spawn the player object (if null it uses default of Vector3.zero)
-        response.Position = Vector3.zero;
-
-        // Rotation to spawn the player object (if null it uses the default of Quaternion.identity)
-        response.Rotation = Quaternion.identity;
-
-        // If additional approval steps are needed, set this to true until the additional steps are complete
-        // once it transitions from true to false the connection approval response will be processed.
-        response.Pending = false;
-    }
+        var uri = new Uri(uriBuilder.ToString(), UriKind.Absolute);
+        return uri;
+    }*/
 
     #endregion Private Methods
 }
