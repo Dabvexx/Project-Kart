@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
+// Keep track of the race
 public class NetworkPlaceManager : NetworkBehaviour
 {
     #region Variables

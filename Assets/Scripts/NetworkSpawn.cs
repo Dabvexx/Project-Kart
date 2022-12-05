@@ -14,7 +14,7 @@ public class NetworkSpawn : NetworkBehaviour
     // Variables.
     [SerializeField] private GameObject spawnObj;
 
-    public Transform spawnPoint;
+    public Transform[] spawnPoints;
 
     // List of spawn points to start
     // after each spawn remove from list and decrement amount of useable spawners
@@ -49,7 +49,7 @@ public class NetworkSpawn : NetworkBehaviour
         var clientId = serverRpcParams.Receive.SenderClientId;
 
         // Instantiate object over the server and give ownership to the client
-        GameObject go = Instantiate(spawnObj, spawnPoint.position, spawnPoint.rotation);
+        GameObject go = Instantiate(spawnObj, spawnPoints[clientId].position, new Quaternion(0,90,0,0));
         var netObj = go.GetComponent<NetworkObject>();
         netObj.Spawn();
         netObj.ChangeOwnership(clientId);

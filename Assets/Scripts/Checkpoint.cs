@@ -21,12 +21,15 @@ public class Checkpoint : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Kart"))
-        {
+        //Debug.Log("Enter Cp");
+        // If a kart hits the checkpoint, validate checkpoint
+        //if (other.gameObject.CompareTag("Kart"))
+        //{
+            Debug.Log($"Hit checkpoint {checkpointNum}");
             FindObjectOfType<CheckpointManager>().ValidateCheckpoint(checkpointNum);
-        }
+        //}
     }
 
     #endregion

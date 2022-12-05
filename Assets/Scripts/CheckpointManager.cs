@@ -1,17 +1,25 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class CheckpointManager : MonoBehaviour
 {
     #region Variables
 
     // Variables.
+    // Text boxes
+    public TextMeshProUGUI lapBox;
+    public TextMeshProUGUI checkpointBox;
+
+    // Checkpoint stuff
     public List<GameObject> essentialCheckpoints;
 
     public int numCheckpoints;
 
     public int curCheckpoint;
+
+    public int lap;
     #endregion Variables
 
     #region Unity Methods
@@ -45,12 +53,17 @@ public class CheckpointManager : MonoBehaviour
             // Reached finishline
             if (checkpointNum == numCheckpoints)
             {
+                
                 curCheckpoint = 0;
                 // IncementLap
+                lap++;
+
+                lapBox.text = $"Lap: {lap}";
                 // reset checkpoint count
                 // call win functions
             }
             // UpdatePlace(CurCheckpoint)
+            checkpointBox.text = $"Checkpoint: {curCheckpoint}";
         }
     }
 
