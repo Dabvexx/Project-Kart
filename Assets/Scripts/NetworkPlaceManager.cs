@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 
 // Keep track of the race
+// Unused due to time constraints
 public class NetworkPlaceManager : NetworkBehaviour
 {
     #region Variables

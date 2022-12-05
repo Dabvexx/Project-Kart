@@ -10,17 +10,6 @@ public class Checkpoint : MonoBehaviour
     #endregion
 
     #region Unity Methods
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Enter Cp");

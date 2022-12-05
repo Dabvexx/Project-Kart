@@ -35,6 +35,7 @@ public class PlayerNetwork : NetworkBehaviour
         cc = GetComponent<CarController>();
     }
 
+    // only drive if you own the object.
     private void Update()
     {
         if (!IsOwner) return;
